@@ -1,0 +1,19 @@
+name: github actions
+
+on:
+    push:
+        branches: ["*"]
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        # checkout@v2 -> usar código sonte da branch
+        #setu-node@v1 -> setar o node na máquina virtual
+        steps: 
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1 
+              with: 
+                node-version: 16
+            - run: npm ci
+            - run: npm run test
+            - run: npm run build
+            - run: npm run deploy
